@@ -3,519 +3,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhisperNet Heritage - Connect with Kenyan Culture</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#E65D03',
-                        secondary: '#1A4D2E',
-                        accent: '#FFB000',
-                    },
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    
+    <title>WhisperNet Heritage - Festival Experience Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #6200ea;
+            --secondary-color: #03dac6;
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+            --error-color: #cf6679;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .tabs {
-            @apply flex flex-wrap justify-center gap-3 p-6 bg-white shadow-lg mb-8 sticky top-0 z-10 border-b border-gray-200;
-            background: linear-gradient(to bottom, white, #fafafa);
-        }
-        
-        .tab-button {
-            @apply px-6 py-3 text-gray-600 rounded-xl transition-all duration-300 font-medium border-2 border-transparent flex items-center gap-2;
-            position: relative;
-        }
-        
-        .tab-button:hover {
-            @apply bg-gray-50 text-primary border-primary/20;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(230, 93, 3, 0.08);
-        }
-        
-        .tab-button.active {
-            @apply bg-primary text-white border-primary;
-            box-shadow: 0 8px 16px rgba(230, 93, 3, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        .tab-button.active::before {
-            content: '';
-            @apply absolute -bottom-6 left-1/2 w-4 h-4 bg-primary rotate-45;
-            transform: translateX(-50%);
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Add icons to tab buttons */
-        .tab-button[onclick*="gossip-feed"]::before { content: '📰'; }
-        .tab-button[onclick*="news-events"]::before { content: '📅'; }
-        .tab-button[onclick*="urban-festival"]::before { content: '🏙️'; }
-        .tab-button[onclick*="business"]::before { content: '💼'; }
-        .tab-button[onclick*="cultural-festival"]::before { content: '🎭'; }
-        .tab-button[onclick*="private-forums"]::before { content: '🔒'; }
-        
-        .tab-content {
-            @apply hidden max-w-7xl mx-auto px-4 opacity-0 transition-opacity duration-300;
-        }
-        
-        .tab-content.active {
-            @apply block opacity-100;
+        .navbar {
+            background-color: var(--surface-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Card hover effects */
-        .card {
-            @apply transition-transform duration-200;
-        }
-        
-        .card:hover {
-            transform: translateY(-4px);
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 100px 0;
+            text-align: center;
         }
 
-        /* Fix duplicate tab content issue */
-        #gossip-feed:not(:first-of-type),
-        #news-events:not(:first-of-type),
-        #urban-festival:not(:first-of-type),
-        #business:not(:first-of-type),
-        #cultural-festival:not(:first-of-type),
-        #private-forums:not(:first-of-type) {
+        .feature-card {
+            background-color: var(--surface-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .confession-card {
+            background-color: var(--surface-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #7c4dff;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border: none;
+            color: var(--background-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #00bfa5;
+        }
+
+        #map {
+            height: 400px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .auth-form {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 400px;
+            margin: 40px auto;
+        }
+
+        .profile-section {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .achievement-badge {
+            background-color: var(--primary-color);
+            color: var(--text-primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            display: inline-block;
+        }
+
+        .ar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: var(--surface-color);
+            color: var(--text-primary);
+            z-index: 1000;
             display: none;
         }
-        
-        /* Splash Screen Animation */
-        .splash-screen {
-            animation: fadeOut 1s ease-in-out 2s forwards;
-        }
-        
-        .splash-logo {
-            animation: scaleUp 1.5s ease-in-out;
-        }
-        
-        @keyframes fadeOut {
-            from { opacity: 1; visibility: visible; }
-            to { opacity: 0; visibility: hidden; }
-        }
-        
-        @keyframes scaleUp {
-            0% { transform: scale(0.5); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
 
-        /* Loading Animation */
-        .loading-dots::after {
-            content: '...';
-            animation: dots 1.5s steps(4, end) infinite;
-        }
-
-        @keyframes dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60% { content: '...'; }
-            80%, 100% { content: ''; }
-        }
-
-        /* Gradient Background */
-        .gradient-bg {
-            background: linear-gradient(135deg, #E65D03 0%, #FFB000 100%);
+        .error-message {
+            color: var(--error-color);
+            margin: 10px 0;
+            display: none;
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Splash Screen -->
-    <div id="splashScreen" class="splash-screen fixed inset-0 z-50 flex items-center justify-center gradient-bg">
-        <div class="text-center splash-logo">
-            <div class="mb-8">
-                <i class="fas fa-globe-africa text-white text-7xl mb-4"></i>
-                <h1 class="text-4xl font-bold text-white font-poppins">WhisperNet Heritage</h1>
-                <p class="text-white text-xl mt-2 font-inter">Connect with Kenyan Culture</p>
-            </div>
-            <div class="loading-dots text-white text-2xl">Loading</div>
-        </div>
-    </div>
-
-    <!-- Main Content (Initially Hidden) -->
-    <div id="mainContent" class="hidden">
-        <!-- Navigation -->
-        <nav class="bg-white shadow-lg">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="flex justify-between h-16">
-                    <div class="flex">
-                        <a href="#" class="flex-shrink-0 flex items-center">
-                            <i class="fas fa-globe-africa text-primary text-2xl mr-2"></i>
-                            <span class="text-2xl font-bold text-primary font-poppins">WhisperNet</span>
-                            <span class="text-2xl font-bold text-secondary font-poppins">Heritage</span>
-                        </a>
-                    </div>
-
-                    <!-- Navigation Links -->
-                    <div class="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
-                        <a href="#" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Business</a>
-                        <a href="#" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Culture</a>
-                        <a href="#" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Urban Festival</a>
-                        <a href="#" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Cultural Festival</a>
-                    </div>
-
-                    <!-- Auth Buttons -->
-                    <div class="hidden sm:flex sm:items-center sm:ml-6">
-                        <button id="loginBtn" class="bg-white text-primary border border-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-primary hover:text-white transition-colors">Login</button>
-                        <button id="registerBtn" class="ml-3 bg-primary text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-dark transition-colors">Register</button>
-                    </div>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">WhisperNet Heritage</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#festivals">Festivals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#confessions">Confessions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ar-experiences">AR Experiences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#merchandise">Merchandise</a>
+                    </li>
+                </ul>
+                <div class="d-flex" id="auth-buttons">
+                    <button class="btn btn-outline-light me-2" onclick="showLoginForm()">Login</button>
+                    <button class="btn btn-primary" onclick="showRegistrationForm()">Sign Up</button>
                 </div>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <div class="relative bg-gradient-to-r from-primary/10 to-secondary/10 overflow-hidden">
-            <div class="max-w-7xl mx-auto">
-                <div class="relative z-10 py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32">
-                    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                            <!-- Left Column: Text Content -->
-                            <div>
-                                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-                                    <span class="block">Discover & Connect with</span>
-                                    <span class="block text-primary mt-2">Kenyan Heritage</span>
-                                </h1>
-                                <p class="mt-6 text-lg text-gray-600 max-w-xl">
-                                    Join our vibrant community celebrating Kenyan culture through festivals, business networking, and cultural events. Share stories, connect with like-minded individuals, and be part of our growing heritage network.
-                                </p>
-                                <div class="mt-8 flex flex-wrap gap-4">
-                                    <a href="#features" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary-dark transition-colors duration-200">
-                                        Get Started
-                                        <i class="fas fa-arrow-right ml-2"></i>
-                                    </a>
-                                    <a href="#about" class="inline-flex items-center px-8 py-3 border-2 border-primary text-base font-medium rounded-lg text-primary hover:bg-primary hover:text-white transition-colors duration-200">
-                                        Learn More
-                                        <i class="fas fa-info-circle ml-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <!-- Right Column: Features Grid -->
-                            <div class="grid grid-cols-2 gap-6">
-                                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200">
-                                    <i class="fas fa-users text-3xl text-primary mb-4"></i>
-                                    <h3 class="text-lg font-semibold mb-2">Community</h3>
-                                    <p class="text-gray-600">Connect with people who share your passion for culture</p>
-                                </div>
-                                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200">
-                                    <i class="fas fa-calendar-alt text-3xl text-primary mb-4"></i>
-                                    <h3 class="text-lg font-semibold mb-2">Events</h3>
-                                    <p class="text-gray-600">Discover and participate in cultural festivals</p>
-                                </div>
-                                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200">
-                                    <i class="fas fa-briefcase text-3xl text-primary mb-4"></i>
-                                    <h3 class="text-lg font-semibold mb-2">Business</h3>
-                                    <p class="text-gray-600">Network with entrepreneurs and professionals</p>
-                                </div>
-                                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200">
-                                    <i class="fas fa-comments text-3xl text-primary mb-4"></i>
-                                    <h3 class="text-lg font-semibold mb-2">Forums</h3>
-                                    <p class="text-gray-600">Engage in meaningful discussions</p>
-                                </div>
-                            </div>
-                        </div>
-                    </main>
+                <div class="d-flex d-none" id="user-profile">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="#settings">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+    </nav>
 
-        <!-- Tabs Navigation -->
-        <div class="tabs mt-8">
-            <button class="tab-button active" onclick="openTab(event, 'gossip-feed')">Gossip Feed</button>
-            <button class="tab-button" onclick="openTab(event, 'news-events')">News & Events</button>
-            <button class="tab-button" onclick="openTab(event, 'urban-festival')">Urban Festival</button>
-            <button class="tab-button" onclick="openTab(event, 'business')">Business</button>
-            <button class="tab-button" onclick="openTab(event, 'cultural-festival')">Cultural Festival</button>
-            <button class="tab-button" onclick="openTab(event, 'private-forums')">Private Forums</button>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Experience Heritage Like Never Before</h1>
+            <p class="lead">Immerse yourself in cultural festivals with AR technology and connect with fellow enthusiasts</p>
+            <button class="btn btn-light btn-lg mt-3" onclick="exploreNow()">Explore Now</button>
         </div>
+    </section>
 
-        <!-- Tab Contents -->
-        <div class="tab-contents max-w-7xl mx-auto px-4 py-8">
-            <div id="gossip-feed" class="tab-content active">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Gossip Feed</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Latest Community Updates</h3>
-                        <p class="text-gray-600 mb-4">Exciting developments in the Nairobi tech scene as local startups showcase innovation at the upcoming Tech Summit.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">Posted by John D.</span>
-                            <button class="text-primary hover:text-primary-dark">Read More</button>
-                        </div>
+    <!-- Features Section -->
+    <section class="py-5" id="features">
+        <div class="container">
+            <h2 class="text-center mb-5">Platform Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-map-marked-alt fa-3x mb-3"></i>
+                        <h3>Interactive Maps</h3>
+                        <p>Navigate festivals with ease using our interactive mapping system</p>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Cultural Spotlight</h3>
-                        <p class="text-gray-600 mb-4">Traditional dance groups prepare for the annual cultural showcase, bringing together diverse communities.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">Posted by Sarah M.</span>
-                            <button class="text-primary hover:text-primary-dark">Read More</button>
-                        </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-glasses fa-3x mb-3"></i>
+                        <h3>AR Experiences</h3>
+                        <p>Enhance your festival experience with augmented reality features</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-comments fa-3x mb-3"></i>
+                        <h3>Festival Confessions</h3>
+                        <p>Share and discover anonymous stories from fellow festival-goers</p>
                     </div>
                 </div>
             </div>
-            <div id="news-events" class="tab-content">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">News & Events</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Upcoming Festival</h3>
-                        <p class="text-gray-600 mb-4">Mark your calendars for the biggest cultural celebration of the year, featuring music, art, and food.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">Next Month</span>
-                            <button class="text-primary hover:text-primary-dark">Learn More</button>
-                        </div>
+        </div>
+    </section>
+
+    <!-- Festival Map -->
+    <section class="py-5" id="festivals">
+        <div class="container">
+            <h2 class="text-center mb-5">Discover Festivals</h2>
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <!-- Confessions Feed -->
+    <section class="py-5" id="confessions">
+        <div class="container">
+            <h2 class="text-center mb-5">Festival Confessions</h2>
+            <div class="row" id="confessions-feed"></div>
+        </div>
+    </section>
+
+    <!-- AR Experiences -->
+    <section class="py-5" id="ar-experiences">
+        <div class="container">
+            <h2 class="text-center mb-5">AR Experiences</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <h3>Historical Overlays</h3>
+                        <p>See historical information overlaid on festival locations</p>
+                        <button class="btn btn-primary" onclick="launchAR('historical')">Launch AR</button>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Community Meeting</h3>
-                        <p class="text-gray-600 mb-4">Join us for the monthly community gathering to discuss local initiatives and opportunities.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">This Weekend</span>
-                            <button class="text-primary hover:text-primary-dark">RSVP</button>
-                        </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-card">
+                        <h3>Interactive Exhibits</h3>
+                        <p>Interact with virtual exhibits and artifacts</p>
+                        <button class="btn btn-primary" onclick="launchAR('exhibits')">Launch AR</button>
                     </div>
                 </div>
             </div>
-            <div id="urban-festival" class="tab-content">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Urban Festival</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Street Art Exhibition</h3>
-                        <p class="text-gray-600 mb-4">Local artists transform city walls into vibrant murals celebrating Kenyan culture.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">Ongoing</span>
-                            <button class="text-primary hover:text-primary-dark">View Gallery</button>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Music Showcase</h3>
-                        <p class="text-gray-600 mb-4">Experience the best of urban music with performances by emerging local artists.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">This Friday</span>
-                            <button class="text-primary hover:text-primary-dark">Get Tickets</button>
-                        </div>
-                    </div>
+        </div>
+    </section>
+
+    <!-- Merchandise Section -->
+    <section class="py-5" id="merchandise">
+        <div class="container">
+            <h2 class="text-center mb-5">Festival Merchandise</h2>
+            <div class="row" id="merchandise-grid"></div>
+        </div>
+    </section>
+
+    <!-- Auth Forms -->
+    <div class="modal fade" id="authModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="authModalTitle">Login</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-            </div>
-            <div id="business" class="tab-content">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Business</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Networking Event</h3>
-                        <p class="text-gray-600 mb-4">Connect with local entrepreneurs and business leaders at our monthly meetup.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">Next Tuesday</span>
-                            <button class="text-primary hover:text-primary-dark">Register</button>
+                <div class="modal-body">
+                    <form id="loginForm" class="auth-form d-none">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email" required>
                         </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Workshop Series</h3>
-                        <p class="text-gray-600 mb-4">Learn essential business skills from industry experts in our workshop series.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">Starting Soon</span>
-                            <button class="text-primary hover:text-primary-dark">Enroll Now</button>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Password" required>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div id="cultural-festival" class="tab-content">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Cultural Festival</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Traditional Dance</h3>
-                        <p class="text-gray-600 mb-4">Experience authentic Kenyan dance performances by renowned cultural groups.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">This Saturday</span>
-                            <button class="text-primary hover:text-primary-dark">Book Tickets</button>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <form id="registerForm" class="auth-form d-none">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Username" required>
                         </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Craft Exhibition</h3>
-                        <p class="text-gray-600 mb-4">Browse and purchase unique handcrafted items from local artisans.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">All Weekend</span>
-                            <button class="text-primary hover:text-primary-dark">View Items</button>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email" required>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div id="private-forums" class="tab-content">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">Private Forums</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Members Only</h3>
-                        <p class="text-gray-600 mb-4">Join our exclusive community discussions and networking opportunities.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">24/7 Access</span>
-                            <button class="text-primary hover:text-primary-dark">Join Now</button>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Password" required>
                         </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-6 card">
-                        <h3 class="text-xl font-semibold mb-3">Special Events</h3>
-                        <p class="text-gray-600 mb-4">Access member-exclusive events and premium content.</p>
-                        <div class="flex items-center justify-between">
-                            <span class="text-sm text-gray-500">Premium Access</span>
-                            <button class="text-primary hover:text-primary-dark">Subscribe</button>
-                        </div>
-                    </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Sign In Modal -->
-    <div id="signInModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-900">Sign In</h2>
-                <button onclick="toggleModal('signInModal')" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <form class="space-y-6">
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" autocomplete="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="password" name="password" autocomplete="current-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                </div>
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input type="checkbox" id="remember-me" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
-                    </div>
-                    <a href="#" class="text-sm text-primary hover:text-primary-dark">Forgot password?</a>
-                </div>
-                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                    Sign In
-                </button>
-            </form>
-            <div class="mt-6 text-center">
-                <p class="text-sm text-gray-600">
-                    Don't have an account? 
-                    <button onclick="switchModal('signInModal', 'signUpModal')" class="text-primary hover:text-primary-dark font-medium">Sign Up</button>
-                </p>
-            </div>
+    <!-- AR Overlay -->
+    <div class="ar-overlay" id="arOverlay">
+        <div class="ar-content">
+            <video id="arVideo" autoplay playsinline></video>
+            <canvas id="arCanvas"></canvas>
         </div>
     </div>
 
-    <!-- Sign Up Modal -->
-    <div id="signUpModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-2xl font-bold text-gray-900">Create Account</h2>
-                <button onclick="toggleModal('signUpModal')" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <form class="space-y-6">
-                <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-                    <input type="text" id="name" name="name" autocomplete="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                </div>
-                <div>
-                    <label for="signup-email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="signup-email" name="email" autocomplete="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                </div>
-                <div>
-                    <label for="signup-password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="password" id="signup-password" name="password" autocomplete="new-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                </div>
-                <div>
-                    <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                </div>
-                <div class="flex items-center">
-                    <input type="checkbox" id="terms" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                    <label for="terms" class="ml-2 block text-sm text-gray-700">
-                        I agree to the <a href="#" class="text-primary hover:text-primary-dark">Terms</a> and <a href="#" class="text-primary hover:text-primary-dark">Privacy Policy</a>
-                    </label>
-                </div>
-                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                    Create Account
-                </button>
-            </form>
-            <div class="mt-6 text-center">
-                <p class="text-sm text-gray-600">
-                    Already have an account? 
-                    <button onclick="switchModal('signUpModal', 'signInModal')" class="text-primary hover:text-primary-dark font-medium">Sign In</button>
-                </p>
-            </div>
-        </div>
-    </div>
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner"></div>
 
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/auth.js"></script>
     <script>
-        // Modal functionality
-        function toggleModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-            } else {
-                modal.classList.add('hidden');
-                document.body.style.overflow = 'auto';
+        // Initialize map
+        const map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // Load festivals
+        async function loadFestivals() {
+            try {
+                const response = await api.festival.getMap();
+                response.data.forEach(festival => {
+                    L.marker([festival.location.coordinates[1], festival.location.coordinates[0]])
+                        .bindPopup(`<h3>${festival.name}</h3><p>${festival.description}</p>`)
+                        .addTo(map);
+                });
+            } catch (error) {
+                showNotification('Failed to load festivals', 'error');
             }
         }
 
-        function switchModal(closeModalId, openModalId) {
-            toggleModal(closeModalId);
-            setTimeout(() => toggleModal(openModalId), 100);
+        // Load confessions
+        async function loadConfessions() {
+            try {
+                const response = await api.confessions.getAll();
+                const feed = document.getElementById('confessions-feed');
+                feed.innerHTML = response.data.map(confession => `
+                    <div class="col-md-6 mb-4">
+                        <div class="confession-card">
+                            <p>${confession.content}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small>${new Date(confession.createdAt).toLocaleDateString()}</small>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-light" onclick="reactToConfession('${confession._id}', 'like')">
+                                        <i class="fas fa-heart"></i> ${confession.reactions.likes.length}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                showNotification('Failed to load confessions', 'error');
+            }
         }
 
-        // Add click event listeners to login/register buttons
-        document.getElementById('loginBtn').addEventListener('click', () => toggleModal('signInModal'));
-        document.getElementById('registerBtn').addEventListener('click', () => toggleModal('signUpModal'));
-
-        // Show main content after splash screen animation
-        setTimeout(() => {
-            document.getElementById('mainContent').classList.remove('hidden');
-        }, 2000);
-
-        // Remove splash screen after animation
-        setTimeout(() => {
-            document.getElementById('splashScreen').remove();
-        }, 3000);
-
-        // Tab functionality
-        function openTab(evt, tabName) {
-            const tabContents = document.getElementsByClassName("tab-content");
-            for (let content of tabContents) {
-                content.classList.remove("active");
-            }
-
-            const tabButtons = document.getElementsByClassName("tab-button");
-            for (let button of tabButtons) {
-                button.classList.remove("active");
-            }
-
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+        // Auth functions
+        function showLoginForm() {
+            document.getElementById('authModalTitle').textContent = 'Login';
+            document.getElementById('loginForm').classList.remove('d-none');
+            document.getElementById('registerForm').classList.add('d-none');
+            new bootstrap.Modal(document.getElementById('authModal')).show();
         }
 
-        // Initialize the first tab
-        document.addEventListener("DOMContentLoaded", () => {
-            const firstTab = document.querySelector('.tab-button');
-            if (firstTab) {
-                firstTab.click();
+        function showRegistrationForm() {
+            document.getElementById('authModalTitle').textContent = 'Register';
+            document.getElementById('loginForm').classList.add('d-none');
+            document.getElementById('registerForm').classList.remove('d-none');
+            new bootstrap.Modal(document.getElementById('authModal')).show();
+        }
+
+        async function logout() {
+            try {
+                await auth.logout();
+                document.getElementById('auth-buttons').classList.remove('d-none');
+                document.getElementById('user-profile').classList.add('d-none');
+                showNotification('Logged out successfully');
+            } catch (error) {
+                showNotification('Failed to logout', 'error');
             }
+        }
+
+        // AR functions
+        function launchAR(mode) {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                showNotification('AR is not supported on your device', 'error');
+                return;
+            }
+
+            document.getElementById('arOverlay').style.display = 'flex';
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+                .then(stream => {
+                    document.getElementById('arVideo').srcObject = stream;
+                })
+                .catch(error => {
+                    showNotification('Failed to access camera', 'error');
+                    document.getElementById('arOverlay').style.display = 'none';
+                });
+        }
+
+        // Utility functions
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.backgroundColor = type === 'error' ? 'var(--error-color)' : 'var(--primary-color)';
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFestivals();
+            loadConfessions();
         });
     </script>
 </body>
