@@ -38,27 +38,56 @@
         }
         
         .tabs {
-            @apply flex flex-wrap justify-center gap-4 p-4 bg-white shadow-md mb-8;
+            @apply flex flex-wrap justify-center gap-3 p-6 bg-white shadow-lg mb-8 sticky top-0 z-10 border-b border-gray-200;
+            background: linear-gradient(to bottom, white, #fafafa);
         }
         
         .tab-button {
-            @apply px-4 py-2 text-gray-600 rounded-md transition-colors duration-200;
+            @apply px-6 py-3 text-gray-600 rounded-xl transition-all duration-300 font-medium border-2 border-transparent flex items-center gap-2;
+            position: relative;
         }
         
         .tab-button:hover {
-            @apply bg-gray-100;
+            @apply bg-gray-50 text-primary border-primary/20;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 93, 3, 0.08);
         }
         
         .tab-button.active {
-            @apply bg-indigo-600 text-white;
+            @apply bg-primary text-white border-primary;
+            box-shadow: 0 8px 16px rgba(230, 93, 3, 0.15);
+            transform: translateY(-2px);
         }
         
+        .tab-button.active::before {
+            content: '';
+            @apply absolute -bottom-6 left-1/2 w-4 h-4 bg-primary rotate-45;
+            transform: translateX(-50%);
+        }
+
+        /* Add icons to tab buttons */
+        .tab-button[onclick*="gossip-feed"]::before { content: '📰'; }
+        .tab-button[onclick*="news-events"]::before { content: '📅'; }
+        .tab-button[onclick*="urban-festival"]::before { content: '🏙️'; }
+        .tab-button[onclick*="business"]::before { content: '💼'; }
+        .tab-button[onclick*="cultural-festival"]::before { content: '🎭'; }
+        .tab-button[onclick*="private-forums"]::before { content: '🔒'; }
+        
         .tab-content {
-            @apply hidden max-w-7xl mx-auto px-4;
+            @apply hidden max-w-7xl mx-auto px-4 opacity-0 transition-opacity duration-300;
         }
         
         .tab-content.active {
-            @apply block;
+            @apply block opacity-100;
+        }
+
+        /* Card hover effects */
+        .card {
+            @apply transition-transform duration-200;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
         }
 
         /* Fix duplicate tab content issue */
@@ -154,28 +183,53 @@
         </nav>
 
         <!-- Hero Section -->
-        <div class="relative bg-white overflow-hidden">
+        <div class="relative bg-gradient-to-r from-primary/10 to-secondary/10 overflow-hidden">
             <div class="max-w-7xl mx-auto">
-                <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-                    <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-                        <div class="sm:text-center lg:text-left">
-                            <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                                <span class="block">Connect with</span>
-                                <span class="block text-primary">Kenyan Culture</span>
-                            </h1>
-                            <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                                Join our vibrant community celebrating Kenyan heritage through cultural events, business networking, and urban festivals.
-                            </p>
-                            <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                                <div class="rounded-md shadow">
-                                    <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark md:py-4 md:text-lg md:px-10">
+                <div class="relative z-10 py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32">
+                    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <!-- Left Column: Text Content -->
+                            <div>
+                                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+                                    <span class="block">Discover & Connect with</span>
+                                    <span class="block text-primary mt-2">Kenyan Heritage</span>
+                                </h1>
+                                <p class="mt-6 text-lg text-gray-600 max-w-xl">
+                                    Join our vibrant community celebrating Kenyan culture through festivals, business networking, and cultural events. Share stories, connect with like-minded individuals, and be part of our growing heritage network.
+                                </p>
+                                <div class="mt-8 flex flex-wrap gap-4">
+                                    <a href="#features" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary-dark transition-colors duration-200">
                                         Get Started
+                                        <i class="fas fa-arrow-right ml-2"></i>
+                                    </a>
+                                    <a href="#about" class="inline-flex items-center px-8 py-3 border-2 border-primary text-base font-medium rounded-lg text-primary hover:bg-primary hover:text-white transition-colors duration-200">
+                                        Learn More
+                                        <i class="fas fa-info-circle ml-2"></i>
                                     </a>
                                 </div>
-                                <div class="mt-3 sm:mt-0 sm:ml-3">
-                                    <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                                        Learn More
-                                    </a>
+                            </div>
+                            
+                            <!-- Right Column: Features Grid -->
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200">
+                                    <i class="fas fa-users text-3xl text-primary mb-4"></i>
+                                    <h3 class="text-lg font-semibold mb-2">Community</h3>
+                                    <p class="text-gray-600">Connect with people who share your passion for culture</p>
+                                </div>
+                                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200">
+                                    <i class="fas fa-calendar-alt text-3xl text-primary mb-4"></i>
+                                    <h3 class="text-lg font-semibold mb-2">Events</h3>
+                                    <p class="text-gray-600">Discover and participate in cultural festivals</p>
+                                </div>
+                                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200">
+                                    <i class="fas fa-briefcase text-3xl text-primary mb-4"></i>
+                                    <h3 class="text-lg font-semibold mb-2">Business</h3>
+                                    <p class="text-gray-600">Network with entrepreneurs and professionals</p>
+                                </div>
+                                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200">
+                                    <i class="fas fa-comments text-3xl text-primary mb-4"></i>
+                                    <h3 class="text-lg font-semibold mb-2">Forums</h3>
+                                    <p class="text-gray-600">Engage in meaningful discussions</p>
                                 </div>
                             </div>
                         </div>
@@ -183,9 +237,253 @@
                 </div>
             </div>
         </div>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs mt-8">
+            <button class="tab-button active" onclick="openTab(event, 'gossip-feed')">Gossip Feed</button>
+            <button class="tab-button" onclick="openTab(event, 'news-events')">News & Events</button>
+            <button class="tab-button" onclick="openTab(event, 'urban-festival')">Urban Festival</button>
+            <button class="tab-button" onclick="openTab(event, 'business')">Business</button>
+            <button class="tab-button" onclick="openTab(event, 'cultural-festival')">Cultural Festival</button>
+            <button class="tab-button" onclick="openTab(event, 'private-forums')">Private Forums</button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="tab-contents max-w-7xl mx-auto px-4 py-8">
+            <div id="gossip-feed" class="tab-content active">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Gossip Feed</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Latest Community Updates</h3>
+                        <p class="text-gray-600 mb-4">Exciting developments in the Nairobi tech scene as local startups showcase innovation at the upcoming Tech Summit.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Posted by John D.</span>
+                            <button class="text-primary hover:text-primary-dark">Read More</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Cultural Spotlight</h3>
+                        <p class="text-gray-600 mb-4">Traditional dance groups prepare for the annual cultural showcase, bringing together diverse communities.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Posted by Sarah M.</span>
+                            <button class="text-primary hover:text-primary-dark">Read More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="news-events" class="tab-content">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">News & Events</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Upcoming Festival</h3>
+                        <p class="text-gray-600 mb-4">Mark your calendars for the biggest cultural celebration of the year, featuring music, art, and food.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Next Month</span>
+                            <button class="text-primary hover:text-primary-dark">Learn More</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Community Meeting</h3>
+                        <p class="text-gray-600 mb-4">Join us for the monthly community gathering to discuss local initiatives and opportunities.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">This Weekend</span>
+                            <button class="text-primary hover:text-primary-dark">RSVP</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="urban-festival" class="tab-content">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Urban Festival</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Street Art Exhibition</h3>
+                        <p class="text-gray-600 mb-4">Local artists transform city walls into vibrant murals celebrating Kenyan culture.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Ongoing</span>
+                            <button class="text-primary hover:text-primary-dark">View Gallery</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Music Showcase</h3>
+                        <p class="text-gray-600 mb-4">Experience the best of urban music with performances by emerging local artists.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">This Friday</span>
+                            <button class="text-primary hover:text-primary-dark">Get Tickets</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="business" class="tab-content">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Business</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Networking Event</h3>
+                        <p class="text-gray-600 mb-4">Connect with local entrepreneurs and business leaders at our monthly meetup.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Next Tuesday</span>
+                            <button class="text-primary hover:text-primary-dark">Register</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Workshop Series</h3>
+                        <p class="text-gray-600 mb-4">Learn essential business skills from industry experts in our workshop series.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Starting Soon</span>
+                            <button class="text-primary hover:text-primary-dark">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="cultural-festival" class="tab-content">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Cultural Festival</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Traditional Dance</h3>
+                        <p class="text-gray-600 mb-4">Experience authentic Kenyan dance performances by renowned cultural groups.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">This Saturday</span>
+                            <button class="text-primary hover:text-primary-dark">Book Tickets</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Craft Exhibition</h3>
+                        <p class="text-gray-600 mb-4">Browse and purchase unique handcrafted items from local artisans.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">All Weekend</span>
+                            <button class="text-primary hover:text-primary-dark">View Items</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="private-forums" class="tab-content">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Private Forums</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Members Only</h3>
+                        <p class="text-gray-600 mb-4">Join our exclusive community discussions and networking opportunities.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">24/7 Access</span>
+                            <button class="text-primary hover:text-primary-dark">Join Now</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-6 card">
+                        <h3 class="text-xl font-semibold mb-3">Special Events</h3>
+                        <p class="text-gray-600 mb-4">Access member-exclusive events and premium content.</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">Premium Access</span>
+                            <button class="text-primary hover:text-primary-dark">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Sign In</h2>
+                <button onclick="toggleModal('signInModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember-me" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                    </div>
+                    <a href="#" class="text-sm text-primary hover:text-primary-dark">Forgot password?</a>
+                </div>
+                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                    Sign In
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Don't have an account? 
+                    <button onclick="switchModal('signInModal', 'signUpModal')" class="text-primary hover:text-primary-dark font-medium">Sign Up</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signUpModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Create Account</h2>
+                <button onclick="toggleModal('signUpModal')" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="name" name="name" autocomplete="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                </div>
+                <div>
+                    <label for="signup-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="signup-email" name="email" autocomplete="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                </div>
+                <div>
+                    <label for="signup-password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="signup-password" name="password" autocomplete="new-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                </div>
+                <div>
+                    <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="terms" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                    <label for="terms" class="ml-2 block text-sm text-gray-700">
+                        I agree to the <a href="#" class="text-primary hover:text-primary-dark">Terms</a> and <a href="#" class="text-primary hover:text-primary-dark">Privacy Policy</a>
+                    </label>
+                </div>
+                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                    Create Account
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">
+                    Already have an account? 
+                    <button onclick="switchModal('signUpModal', 'signInModal')" class="text-primary hover:text-primary-dark font-medium">Sign In</button>
+                </p>
+            </div>
+        </div>
     </div>
 
     <script>
+        // Modal functionality
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function switchModal(closeModalId, openModalId) {
+            toggleModal(closeModalId);
+            setTimeout(() => toggleModal(openModalId), 100);
+        }
+
+        // Add click event listeners to login/register buttons
+        document.getElementById('loginBtn').addEventListener('click', () => toggleModal('signInModal'));
+        document.getElementById('registerBtn').addEventListener('click', () => toggleModal('signUpModal'));
+
         // Show main content after splash screen animation
         setTimeout(() => {
             document.getElementById('mainContent').classList.remove('hidden');
@@ -195,6 +493,30 @@
         setTimeout(() => {
             document.getElementById('splashScreen').remove();
         }, 3000);
+
+        // Tab functionality
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let content of tabContents) {
+                content.classList.remove("active");
+            }
+
+            const tabButtons = document.getElementsByClassName("tab-button");
+            for (let button of tabButtons) {
+                button.classList.remove("active");
+            }
+
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Initialize the first tab
+        document.addEventListener("DOMContentLoaded", () => {
+            const firstTab = document.querySelector('.tab-button');
+            if (firstTab) {
+                firstTab.click();
+            }
+        });
     </script>
 </body>
 </html>
